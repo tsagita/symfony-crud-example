@@ -1,0 +1,42 @@
+{# templates/product/index.html.twig #} {% extends 'base.html.twig' %} {% block
+title %}Product List{% endblock %} {% block body %}
+<h1>Product List</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <th scope="row">{{ product.id }}</th>
+      <td>{{ product.name }}</td>
+      <td>{{ product.stock }}</td>
+      <td>{{ product.status ? "Active" : "Inactive" }}</td>
+      <td>
+        <a
+          href="{{ path('product_show', { id: product.id }) }}"
+          class="btn btn-info btn-sm"
+          >Show</a
+        >
+        <a
+          href="{{ path('product_edit', { id: product.id }) }}"
+          class="btn btn-warning btn-sm"
+          >Edit</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{{ path('product_new') }}" class="btn btn-success"
+  >Create New Product</a
+>
+{% endblock %}
